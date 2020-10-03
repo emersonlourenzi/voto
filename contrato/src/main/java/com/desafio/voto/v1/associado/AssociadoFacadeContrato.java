@@ -1,14 +1,10 @@
 package com.desafio.voto.v1.associado;
 
-import com.desafio.voto.associado.AssociadoEntidade;
 import com.desafio.voto.associado.AssociadoFacadeImplementacao;
-import com.desafio.voto.associado.model.AssociadoModelImplementacao;
 import com.desafio.voto.v1.associado.mapper.MapperAssociadoContrato;
 import com.desafio.voto.v1.associado.model.AssociadoModelContrato;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @AllArgsConstructor
@@ -42,7 +38,12 @@ public class AssociadoFacadeContrato {
                         .mapperAssociadoContratoParaImplementacao(model)));
     }
 
-    public List<AssociadoEntidade> buscaTodosAssociados() {
-        return facade.buscaTodosAssociados();
+    public AssociadoModelContrato buscaAssociadoPorId(String id) {
+        return MapperAssociadoContrato.mapperAssociadoImplementacaoParaContrato(facade.buscaAssociadoPorId(id));
     }
+
+    public AssociadoModelContrato buscaAssociadoPorCPF(String cpf) {
+        return MapperAssociadoContrato.mapperAssociadoImplementacaoParaContrato(facade.buscaAssociadoPorCPF(cpf));
+    }
+
 }

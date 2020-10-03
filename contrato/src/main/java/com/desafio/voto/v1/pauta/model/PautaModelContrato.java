@@ -22,7 +22,7 @@ public class PautaModelContrato {
     @ApiModelProperty(value = "ID da pauta")
     private String id;
     @ApiModelProperty(value = "Motivo da pauta")
-    @NotNull(message = "Motivo pauta deve ser informado")
+    @NotNull(message = "Motivo da pauta deve ser informado")
     private String motivoPauta;
     @ApiModelProperty(value = "Data da pauta")
     private LocalDateTime dataPauta;

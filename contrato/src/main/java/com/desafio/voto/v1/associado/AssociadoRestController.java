@@ -1,7 +1,5 @@
 package com.desafio.voto.v1.associado;
 
-import com.desafio.voto.associado.AssociadoEntidade;
-import com.desafio.voto.associado.model.AssociadoModelImplementacao;
 import com.desafio.voto.v1.associado.model.AssociadoModelContrato;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -10,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/associado")
@@ -72,19 +69,30 @@ public class AssociadoRestController {
     })
     @PutMapping("/editar/cpf/{cpf}")
     public AssociadoModelContrato editarPorCPF(@Valid @PathVariable String cpf,
-                                              @Valid @RequestBody AssociadoModelContrato model) {
+                                               @Valid @RequestBody AssociadoModelContrato model) {
         return facade.editarPorCPF(cpf, model);
     }
 
-    @ApiOperation(value = "Editar associado pelo cpf")
+    @ApiOperation(value = "Busca associado pelo id")
     @ApiResponses({
-            @ApiResponse(code = 204, message = "Alteração efetuado com sucesso", response = AssociadoModelContrato.class),
+            @ApiResponse(code = 200, message = "Sucesso", response = AssociadoModelContrato.class),
+            @ApiResponse(code = 404, message = "ID de associado não encontrado"),
+            @ApiResponse(code = 500, message = "Erro interno ocorrido")
+    })
+    @GetMapping("/busca/id/{id}")
+    public AssociadoModelContrato buscaAssociadoPorId(@Valid @PathVariable String id) {
+        return facade.buscaAssociadoPorId(id);
+    }
+
+    @ApiOperation(value = "Busca associado pelo cpf")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Sucesso", response = AssociadoModelContrato.class),
             @ApiResponse(code = 404, message = "CPF de associado não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno ocorrido")
     })
-    @PutMapping("/editar/cpf/{cpf}")
-    public List<AssociadoEntidade> buscaAssociadoPorId(@Valid @PathVariable String id) {
-        return facade.buscaAssociadoPorId(id);
+    @GetMapping("/busca/cpf/{cpf}")
+    public AssociadoModelContrato buscaAssociadoPorCPF(@Valid @PathVariable String cpf) {
+        return facade.buscaAssociadoPorCPF(cpf);
     }
 
 }

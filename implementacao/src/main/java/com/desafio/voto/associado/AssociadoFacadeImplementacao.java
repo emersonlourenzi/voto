@@ -4,8 +4,6 @@ import com.desafio.voto.associado.model.AssociadoModelImplementacao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @AllArgsConstructor
 public class AssociadoFacadeImplementacao {
@@ -32,7 +30,12 @@ public class AssociadoFacadeImplementacao {
         return service.editarPorCPF(cpf, model);
     }
 
-    public List<AssociadoEntidade> buscaTodosAssociados() {
-        return service.buscaTodosAssociados();
+    public AssociadoModelImplementacao buscaAssociadoPorId(String id) {
+        return service.buscaAssociadoPorId(id);
     }
+
+    public AssociadoModelImplementacao buscaAssociadoPorCPF(String cpf) {
+        return service.buscaAssociadoPorCPF(cpf);
+    }
+
 }

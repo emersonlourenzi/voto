@@ -11,7 +11,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.InputMismatchException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -88,7 +89,24 @@ public class AssociadoService {
         }
     }
 
-    public List<AssociadoEntidade> buscaTodosAssociados() {
-        return repository.findAll();
+    public AssociadoModelImplementacao buscaAssociadoPorId(String id) {
+        Optional<AssociadoModelImplementacao> model = repository.findById(id);
+        if (!model.isEmpty()) {
+            return repository.findById(id).orElseThrow(InputMismatchException::new);
+        } else {
+            throw new NotFound("Associado não encontrado");
+        }
     }
+
+    public AssociadoModelImplementacao buscaAssociadoPorCPF(String cpf) {
+        final Query query = new Query();
+        query.addCriteria(Criteria.where("cpf").is(cpf));
+        AssociadoModelImplementacao modelImpl = mongoTemplate.findOne(query, AssociadoModelImplementacao.class);
+        if (modelImpl != null) {
+            return repository.findById(modelImpl.getId()).orElseThrow(InputMismatchException::new);
+        } else {
+            throw new NotFound("CPF de usuario não existe");
+        }
+    }
+
 }
