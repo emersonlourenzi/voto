@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,8 +21,10 @@ public class AssociadoModelContrato {
     @ApiModelProperty(value = "ID do ssociado")
     private String id;
     @ApiModelProperty(value = "Nome do associado")
+    @NotNull
     private String nome;
     @ApiModelProperty(value = "CPF do associado")
+    @NotNull
     private String cpf;
 
 }
