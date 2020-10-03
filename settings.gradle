@@ -1,0 +1,3 @@
+rootProject.name = 'voto'
+include ":contrato", ":implementacao", ":integracao"
+
