@@ -9,8 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,9 +16,8 @@ import javax.validation.constraints.NotNull;
 @Document(value = "votacao")
 public class VotacaoModelImplementacao {
 
-    private PautaModelImplementacao pautaModelContrato;
-    @NotNull
-    private AssociadoModelImplementacao associadoModelContrato;
+    private PautaModelImplementacao pautaModelImplementacao;
+    private AssociadoModelImplementacao associadoModelImplementacao;
     private VotoEnum votoEnum;
 
 }
