@@ -44,9 +44,9 @@ public class SwaggerConfig {
 
     private Contact contact() {
         return new Contact(
-                "",
-                "",
-                "desafio@voto.com");
+                "Emerson Lourenzi",
+                "https://github.com/emersonlourenzi/voto",
+                "emersonl.lourenzi@gmail.com");
     }
 
 }
