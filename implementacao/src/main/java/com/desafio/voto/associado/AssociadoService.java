@@ -19,12 +19,15 @@ import java.util.Optional;
 public class AssociadoService {
 
     private final AssociadoRepository repository;
+    private final AssociadoFacadeIntegracao facadeIntegracao;
     private final MongoClient mongoClient = new MongoClient();
     private final MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, "bancovoto");
 
     public AssociadoModelImplementacao adicionar(AssociadoModelImplementacao model) {
+        String cpfVerificado = facadeIntegracao.verificarCPF(model.getCpf());
         if (model.getCpf() == null || model.getCpf().equals("") || model.getCpf().length() != 11 ||
-                model.getNome() == null || model.getNome().equals("")) {
+                model.getNome() == null || model.getNome().equals("") ||
+                cpfVerificado.equals("UNABLE_TO_VOTE")) {
             throw new NotFound("Dados informados são inválidos");
         } else {
             final Query query = new Query();

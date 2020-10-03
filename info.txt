@@ -1,5 +1,9 @@
 JAVA 11
 
+OBSERVAÇÃO: Como a API de validação de voto é no herokuapp, irá falhar na primeira tentativa
+de adicionar um associado ou de validar voto, pois só após da tentativa de conexão sobe a
+aplicação no heroku.
+
 Docker:
 Caso tenha o docker ultilize o seu, caso não possua instale o docker.
 Pode utilizar o exemplo abaixo para instalação do docker:
