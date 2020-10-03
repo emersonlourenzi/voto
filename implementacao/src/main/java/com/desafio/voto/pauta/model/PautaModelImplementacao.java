@@ -1,4 +1,4 @@
-package com.desafio.voto.v1.pauta.model;
+package com.desafio.voto.pauta.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,13 +13,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(value = "pauta")
-public class PautaModelContrato {
+public class PautaModelImplementacao {
 
     private String id;
-    @NotNull(message = "Motivo pauta deve ser informado")
     private String motivoPauta;
     private LocalDateTime dataPauta;
 
 }
-
-
