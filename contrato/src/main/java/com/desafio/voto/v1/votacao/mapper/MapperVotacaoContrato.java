@@ -1,30 +1,46 @@
 package com.desafio.voto.v1.votacao.mapper;
 
-import com.desafio.voto.v1.associado.mapper.MapperAssociadoContrato;
-import com.desafio.voto.v1.pauta.mapper.MapperPautaContrato;
 import com.desafio.voto.v1.votacao.model.VotacaoModelContrato;
+import com.desafio.voto.v1.votacao.model.VotosModelContrato;
 import com.desafio.voto.votacao.model.VotacaoModelImplementacao;
+import com.desafio.voto.votacao.model.VotosModelImplementacao;
+
+import java.util.Optional;
 
 public class MapperVotacaoContrato {
 
     public static VotacaoModelContrato mapperVotacaoImplementacaoParaContrato(VotacaoModelImplementacao model) {
-        return VotacaoModelContrato.builder()
-                .associadoModelContrato(MapperAssociadoContrato
-                        .mapperAssociadoImplementacaoParaContrato(model.getAssociadoModelImplementacao()))
-                .pautaModelContrato(MapperPautaContrato
-                        .mapperPautaImplementacaoParaContrato(model.getPautaModelImplementacao()))
-                .votoEnum(model.getVotoEnum())
-                .build();
+        return Optional.ofNullable(model).map(mod -> VotacaoModelContrato.builder()
+                .idPauta(mod.getIdPauta())
+                .duracaoVotacao(mod.getDuracaoVotacao())
+                .build())
+                .orElse(null);
     }
 
     public static VotacaoModelImplementacao mapperVotacaoContratoParaImplementacao(VotacaoModelContrato model) {
-        return VotacaoModelImplementacao.builder()
-                .associadoModelImplementacao(MapperAssociadoContrato
-                        .mapperAssociadoContratoParaImplementacao(model.getAssociadoModelContrato()))
-                .pautaModelImplementacao(MapperPautaContrato
-                        .mapperPautaContratoParaImplementacao(model.getPautaModelContrato()))
-                .votoEnum(model.getVotoEnum())
-                .build();
+        return Optional.ofNullable(model).map(mod -> VotacaoModelImplementacao.builder()
+                .idPauta(mod.getIdPauta())
+                .duracaoVotacao(mod.getDuracaoVotacao())
+                .build())
+                .orElse(null);
+    }
+
+    public static VotosModelContrato mapperVotosImplementacaoParaContrato(VotosModelImplementacao model) {
+        return Optional.ofNullable(model).map(mod -> VotosModelContrato.builder()
+                .idVotacao(mod.getIdVotacao())
+                .cpfAssociado(mod.getCpfAssociado())
+                .voto(mod.getVoto())
+                .build())
+                .orElse(null);
+    }
+
+    public static VotosModelImplementacao mapperVotosContratoParaImplementacao(VotosModelContrato model) {
+        return Optional.ofNullable(model).map(mod -> VotosModelImplementacao.builder()
+                .idVotacao(mod.getIdVotacao())
+                .cpfAssociado(mod.getCpfAssociado())
+                .voto(mod.getVoto())
+                .build())
+                .orElse(null);
     }
 
 }

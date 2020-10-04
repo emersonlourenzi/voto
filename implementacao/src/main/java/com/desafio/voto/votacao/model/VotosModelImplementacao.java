@@ -1,5 +1,6 @@
 package com.desafio.voto.votacao.model;
 
+import com.desafio.voto.enuns.VotoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,13 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(value = "votacao")
-public class VotacaoModelImplementacao {
+@Document(value = "votos")
+public class VotosModelImplementacao {
 
     private String idVotacao;
-    private String idPauta;
-    private Long inicioVotacao;
-    private Integer duracaoVotacao;
-    private Long fimVotacao;
+    private String cpfAssociado;
+    private VotoEnum voto;
 
 }
