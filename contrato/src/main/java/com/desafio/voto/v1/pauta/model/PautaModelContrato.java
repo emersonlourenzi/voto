@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "Objeto Pauta")
 public class PautaModelContrato {
 
+    @Id
     @ApiModelProperty(value = "ID da pauta")
     private String id;
     @ApiModelProperty(value = "Motivo da pauta")

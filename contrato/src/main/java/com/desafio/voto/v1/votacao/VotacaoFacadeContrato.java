@@ -25,4 +25,8 @@ public class VotacaoFacadeContrato {
                 .mapperVotosImplementacaoParaContrato(facade.votar(MapperVotacaoContrato
                         .mapperVotosContratoParaImplementacao(model)));
     }
+
+    public String resultado(String idVotacao) {
+        return facade.resultado(idVotacao);
+    }
 }

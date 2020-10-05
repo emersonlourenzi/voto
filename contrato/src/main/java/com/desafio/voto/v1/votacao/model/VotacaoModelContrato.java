@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
@@ -18,10 +19,17 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value = "Objeto votação")
 public class VotacaoModelContrato {
 
+    @Id
+    @ApiModelProperty(value = "ID votação")
+    private String id;
     @NotNull
-    @ApiModelProperty(value = "Pauta a ser votada")
+    @ApiModelProperty(value = "ID Pauta")
     private String idPauta;
+    @ApiModelProperty(value = "Inicio votação")
+    private Long inicioVotacao;
     @ApiModelProperty(value = "Duração da votação em minutos")
-    private Integer duracaoVotacao;
+    private Long duracaoVotacao;
+    @ApiModelProperty(value = "Fim votação")
+    private Long fimVotacao;
 
 }

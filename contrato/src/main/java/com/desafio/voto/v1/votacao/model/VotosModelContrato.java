@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -17,10 +20,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ApiModel(value = "Objeto votos")
 public class VotosModelContrato {
 
+    @Id
+    @ApiModelProperty(value = "ID votos")
+    private String id;
+    @NotNull
     @ApiModelProperty(value = "ID votação")
     private String idVotacao;
+    @NotNull
     @ApiModelProperty(value = "CPF associado")
     private String cpfAssociado;
+    @NotNull
     @ApiModelProperty(value = "Voto (SIM ou NAO)")
     private VotoEnum voto;
 

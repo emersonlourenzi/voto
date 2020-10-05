@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -41,6 +38,17 @@ public class VotacaoRestController {
     @PostMapping("/votar")
     public VotosModelContrato votar(@Valid @RequestBody VotosModelContrato model) {
         return facade.votar(model);
+    }
+
+    @ApiOperation(value = "Resultado votação", produces = "application/json")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Votação iniciada com sucesso", response = AssociadoModelContrato.class),
+            @ApiResponse(code = 404, message = "Página não encontrada"),
+            @ApiResponse(code = 500, message = "Erro interno ocorrido")
+    })
+    @GetMapping("/resultado/{idVotacao}")
+    public String resultado(@PathVariable String idVotacao) {
+        return facade.resultado(idVotacao);
     }
 
 }

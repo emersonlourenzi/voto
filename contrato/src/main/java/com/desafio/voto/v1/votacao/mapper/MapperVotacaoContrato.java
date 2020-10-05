@@ -12,7 +12,10 @@ public class MapperVotacaoContrato {
     public static VotacaoModelContrato mapperVotacaoImplementacaoParaContrato(VotacaoModelImplementacao model) {
         return Optional.ofNullable(model).map(mod -> VotacaoModelContrato.builder()
                 .idPauta(mod.getIdPauta())
+                .fimVotacao(mod.getFimVotacao())
+                .id(mod.getId())
                 .duracaoVotacao(mod.getDuracaoVotacao())
+                .inicioVotacao(mod.getInicioVotacao())
                 .build())
                 .orElse(null);
     }
@@ -21,12 +24,16 @@ public class MapperVotacaoContrato {
         return Optional.ofNullable(model).map(mod -> VotacaoModelImplementacao.builder()
                 .idPauta(mod.getIdPauta())
                 .duracaoVotacao(mod.getDuracaoVotacao())
+                .fimVotacao(mod.getFimVotacao())
+                .id(mod.getId())
+                .inicioVotacao(mod.getInicioVotacao())
                 .build())
                 .orElse(null);
     }
 
     public static VotosModelContrato mapperVotosImplementacaoParaContrato(VotosModelImplementacao model) {
         return Optional.ofNullable(model).map(mod -> VotosModelContrato.builder()
+                .id(mod.getId())
                 .idVotacao(mod.getIdVotacao())
                 .cpfAssociado(mod.getCpfAssociado())
                 .voto(mod.getVoto())
@@ -36,6 +43,7 @@ public class MapperVotacaoContrato {
 
     public static VotosModelImplementacao mapperVotosContratoParaImplementacao(VotosModelContrato model) {
         return Optional.ofNullable(model).map(mod -> VotosModelImplementacao.builder()
+                .id(mod.getId())
                 .idVotacao(mod.getIdVotacao())
                 .cpfAssociado(mod.getCpfAssociado())
                 .voto(mod.getVoto())

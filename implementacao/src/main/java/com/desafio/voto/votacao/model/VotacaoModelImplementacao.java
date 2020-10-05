@@ -13,10 +13,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(value = "votacao")
 public class VotacaoModelImplementacao {
 
-    private String idVotacao;
+    private String id;
     private String idPauta;
     private Long inicioVotacao;
-    private Integer duracaoVotacao;
+    private Long duracaoVotacao;
     private Long fimVotacao;
 
 }

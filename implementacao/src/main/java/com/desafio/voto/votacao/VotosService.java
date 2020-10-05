@@ -6,6 +6,7 @@ import com.desafio.voto.enuns.VotoEnum;
 import com.desafio.voto.error.NotFound;
 import com.desafio.voto.votacao.model.VotacaoModelImplementacao;
 import com.desafio.voto.votacao.model.VotosModelImplementacao;
+import com.desafio.voto.votacao.repository.VotacaoRepository;
 import com.desafio.voto.votacao.repository.VotosRepository;
 import com.mongodb.MongoClient;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class VotosService {
     private final VotosRepository repository;
+    private final VotacaoRepository votacaoRepository;
     private final MongoClient mongoClient = new MongoClient();
     private final MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, "bancovotacao");
     private final AssociadoFacadeIntegracao associadoFacade;
@@ -48,39 +50,28 @@ public class VotosService {
         query.addCriteria(Criteria.where("cpfAssociado").is(cpfAssociado));
         query.addCriteria(Criteria.where("idVotacao").is(idVotacao));
         VotosModelImplementacao modelImpl = mongoTemplate.findOne(query, VotosModelImplementacao.class);
-        if (modelImpl != null) {
-            return false;
-        } else {
-            return true;
-        }
+        return modelImpl != null;
     }
 
-    private boolean verificaVotacao(String idVotacao) {
-        final Query query = new Query();
-        query.addCriteria(Criteria.where("idVotacao").is(idVotacao));
-        VotacaoModelImplementacao modelImpl = mongoTemplate.findOne(query, VotacaoModelImplementacao.class);
-        if (modelImpl != null && new Date().getTime() <= modelImpl.getFimVotacao()) {
-            return true;
-        } else {
-            return false;
-        }
+    private boolean verificaVotacao(String id) {
+        Optional<VotacaoModelImplementacao> votacao = votacaoRepository.findById(id);
+        Long fimVotacao = votacao.map(VotacaoModelImplementacao::getFimVotacao).get();
+        return new Date().getTime() <= fimVotacao;
+
     }
 
     public String resultadoVotacao(String idVotacao) {
-        Optional<VotosModelImplementacao> votos = repository.findById(idVotacao);
-        List<VotoEnum> votosNao = votos.stream()
-                .map(VotosModelImplementacao::getVoto).filter(a -> a.equals(VotoEnum.NAO))
-                .collect(Collectors.toList());
-        int totVotosNao = votosNao.size();
-        List<VotoEnum> votosSim = votos.stream()
-                .map(VotosModelImplementacao::getVoto).filter(a -> a.equals(VotoEnum.SIM))
-                .collect(Collectors.toList());
-        int totVotosSim = votosSim.size();
-
-        if (totVotosNao > totVotosSim) {
-            return "NÃO VENCEU";
-        } else if (totVotosNao < totVotosSim) {
-            return "SIM VENCEU";
+        List<VotosModelImplementacao> votos = repository.findAll();
+        List<VotosModelImplementacao> votosId = votos.stream()
+                .filter(voto -> voto.getIdVotacao().equals(idVotacao)).collect(Collectors.toList());
+        int nao = votosId.stream()
+                .filter(voto -> voto.getVoto() == VotoEnum.NAO).collect(Collectors.toList()).size();
+        int sim = votosId.stream()
+                .filter(voto -> voto.getVoto() == VotoEnum.SIM).collect(Collectors.toList()).size();
+        if (nao > sim) {
+            return "VOTOS NÃO VENCEU";
+        } else if (nao < sim) {
+            return "VOTOS SIM VENCEU";
         } else {
             return "EMPATE";
         }

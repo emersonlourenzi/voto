@@ -19,4 +19,8 @@ public class VotacaoFacadeImplementacao {
     public VotosModelImplementacao votar(VotosModelImplementacao model) {
         return votosService.votar(model);
     }
+
+    public String resultado(String idVotacao) {
+        return votosService.resultadoVotacao(idVotacao);
+    }
 }

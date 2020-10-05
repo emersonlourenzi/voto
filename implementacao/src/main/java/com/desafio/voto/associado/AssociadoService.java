@@ -72,8 +72,8 @@ public class AssociadoService {
         AssociadoModelImplementacao modelImpl = mongoTemplate.findOne(query, AssociadoModelImplementacao.class);
         if (modelImpl != null && repository.existsById(modelImpl.getId())) {
             repository.deleteById(modelImpl.getId());
-            modelImpl.setId(modelImpl.getId());
-            return repository.save(modelImpl);
+            model.setId(modelImpl.getId());
+            return repository.save(model);
         } else {
             throw new NotFound("ID de associado inexistente");
         }
