@@ -1,7 +1,5 @@
 # voto
 Desafio voto cooperativismo</br></br>
-**OBSERVAÇÃO:** *Como a API de validação de voto é no herokuapp, irá falhar na primeira tentativa de adicionar um associado ou de validar voto, pois só 
-após da tentativa de conexão sobe a aplicação no heroku.*
 
 
 ## **JAVA 11**
