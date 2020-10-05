@@ -79,14 +79,14 @@ public class AssociadoService {
         }
     }
 
-    public AssociadoModelImplementacao editarPorCPF(String cpf, AssociadoModelImplementacao model) {
+    public AssociadoModelImplementacao editarPorCPF(AssociadoModelImplementacao model) {
         final Query query = new Query();
-        query.addCriteria(Criteria.where("cpf").is(cpf));
+        query.addCriteria(Criteria.where("cpf").is(model.getCpf()));
         AssociadoModelImplementacao modelImpl = mongoTemplate.findOne(query, AssociadoModelImplementacao.class);
         if (modelImpl != null) {
             mongoTemplate.remove(query, "associado");
-            modelImpl.setId(modelImpl.getId());
-            return repository.save(modelImpl);
+            model.setId(modelImpl.getId());
+            return repository.save(model);
         } else {
             throw new NotFound("CPF de usuario não existe");
         }

@@ -67,10 +67,9 @@ public class AssociadoRestController {
             @ApiResponse(code = 404, message = "CPF de associado não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno ocorrido")
     })
-    @PutMapping("/editar/cpf/{cpf}")
-    public AssociadoModelContrato editarPorCPF(@Valid @PathVariable String cpf,
-                                               @Valid @RequestBody AssociadoModelContrato model) {
-        return facade.editarPorCPF(cpf, model);
+    @PutMapping("/editar/cpf")
+    public AssociadoModelContrato editarPorCPF(@Valid @RequestBody AssociadoModelContrato model) {
+        return facade.editarPorCPF(model);
     }
 
     @ApiOperation(value = "Busca associado pelo id")

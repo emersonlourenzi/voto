@@ -26,8 +26,8 @@ public class AssociadoFacadeImplementacao {
         return service.editarPorId(id, model);
     }
 
-    public AssociadoModelImplementacao editarPorCPF(String cpf, AssociadoModelImplementacao model) {
-        return service.editarPorCPF(cpf, model);
+    public AssociadoModelImplementacao editarPorCPF(AssociadoModelImplementacao model) {
+        return service.editarPorCPF(model);
     }
 
     public AssociadoModelImplementacao buscaAssociadoPorId(String id) {

@@ -1,0 +1,288 @@
+{
+	"id": "278ef46d-df67-49dc-8ba5-e97f1cc1f5e7",
+	"name": "api votação",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"a6b9c144-35a8-4659-927e-7cd876df4183"
+	],
+	"folders_order": [
+		"4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+		"bb71da6b-183a-4cb1-bf02-96bbb952b002",
+		"295aa169-f328-4b58-b475-f700cc05419d"
+	],
+	"protocolProfileBehavior": {},
+	"folders": [
+		{
+			"id": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"name": "associado",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "278ef46d-df67-49dc-8ba5-e97f1cc1f5e7",
+			"folder": null,
+			"order": [
+				"e3a0cb2e-0217-44b3-9b9d-b42d7975f79f",
+				"a9c8c17c-e8ce-4f2c-8be8-eb372e11dbfb",
+				"a144c5e9-4443-4d18-b4da-cda5e5c4912d",
+				"25241a0c-b277-4247-b406-32f49f8150ef",
+				"7c8d0009-c535-4113-8873-4f1867c39ba1",
+				"ea382d11-f403-4a38-b9a4-64e8d12f95a2"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "bb71da6b-183a-4cb1-bf02-96bbb952b002",
+			"name": "pauta",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "278ef46d-df67-49dc-8ba5-e97f1cc1f5e7",
+			"folder": null,
+			"order": [
+				"e9b3c82e-411b-4eb9-9c19-f6c45af96560"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"id": "295aa169-f328-4b58-b475-f700cc05419d",
+			"name": "votação",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "278ef46d-df67-49dc-8ba5-e97f1cc1f5e7",
+			"folder": null,
+			"order": [
+				"299ffc80-f795-4a6f-95f6-f05b51cd122d",
+				"7469d204-1ce0-45a2-a60d-d0ec8357ce6f",
+				"1e346311-af83-4386-b476-c5c80a9585d0"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"requests": [
+		{
+			"id": "1e346311-af83-4386-b476-c5c80a9585d0",
+			"name": "http://localhost:9000/voto/v1/votacao/resultado/5f7a59e86dcda94eb631b354",
+			"url": "http://localhost:9000/voto/v1/votacao/resultado/5f7a59e86dcda94eb631b354",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": null,
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "295aa169-f328-4b58-b475-f700cc05419d",
+			"pathVariables": {}
+		},
+		{
+			"id": "25241a0c-b277-4247-b406-32f49f8150ef",
+			"name": "http://localhost:9000/voto/v1/associado/excluir/cpf/1213",
+			"url": "http://localhost:9000/voto/v1/associado/excluir/cpf/1213",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": null,
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"pathVariables": {}
+		},
+		{
+			"id": "299ffc80-f795-4a6f-95f6-f05b51cd122d",
+			"name": "http://localhost:9000/voto/v1/votacao/iniciar",
+			"url": "http://localhost:9000/voto/v1/votacao/iniciar",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": null,
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "295aa169-f328-4b58-b475-f700cc05419d",
+			"rawModeData": "{\n    \"idPauta\":\"5f7a511d6dcda9406433a089\",\n    \"duracaoVotacao\":30\n}",
+			"pathVariables": {}
+		},
+		{
+			"id": "7469d204-1ce0-45a2-a60d-d0ec8357ce6f",
+			"name": "http://localhost:9000/voto/v1/votacao/votar",
+			"url": "http://localhost:9000/voto/v1/votacao/votar",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": null,
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "295aa169-f328-4b58-b475-f700cc05419d",
+			"rawModeData": "{\n    \"idVotacao\":\"5f7a59e86dcda94eb631b354\",\n    \"cpfAssociado\":\"84108080050\",\n    \"voto\":\"NAO\"\n}",
+			"pathVariables": {}
+		},
+		{
+			"id": "7c8d0009-c535-4113-8873-4f1867c39ba1",
+			"name": "http://localhost:9000/voto/v1/associado/busca/id/5f78f091fdb7af18c471fba7",
+			"url": "http://localhost:9000/voto/v1/associado/busca/cpf/84108080050",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a144c5e9-4443-4d18-b4da-cda5e5c4912d",
+			"name": "https://user-info.herokuapp.com/users/12345678910",
+			"url": "https://user-info.herokuapp.com/users/12345678910",
+			"description": null,
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a6b9c144-35a8-4659-927e-7cd876df4183",
+			"name": "https://user-info.herokuapp.com/users/19874079037",
+			"url": "https://user-info.herokuapp.com/users/19874079037",
+			"description": null,
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a9c8c17c-e8ce-4f2c-8be8-eb372e11dbfb",
+			"name": "http://localhost:9000/voto/v1/associado/adicionar",
+			"url": "https://votocooperado.herokuapp.com/voto/v1/associado/adicionar",
+			"description": null,
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"rawModeData": "{\n    \"cpf\":\"19874079037\",\n    \"nome\":\"Poucas Trancas\"\n}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e3a0cb2e-0217-44b3-9b9d-b42d7975f79f",
+			"name": "http://localhost:9000/voto/v1/associado/busca/id/5f78f091fdb7af18c471fba7",
+			"url": "http://localhost:9000/voto/v1/associado/busca/id/5f78f091fdb7af18c471fba7",
+			"description": null,
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e9b3c82e-411b-4eb9-9c19-f6c45af96560",
+			"name": "http://localhost:9000/voto/v1/pauta/criar",
+			"url": "http://localhost:9000/voto/v1/pauta/criar",
+			"description": null,
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "bb71da6b-183a-4cb1-bf02-96bbb952b002",
+			"rawModeData": "{\n    \"motivoPauta\":\"PRIMEIRA\"\n}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "ea382d11-f403-4a38-b9a4-64e8d12f95a2",
+			"name": "http://localhost:9000/voto/v1/associado/editar/cpf",
+			"url": "http://localhost:9000/voto/v1/associado/editar/cpf",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": null,
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "4337fa5b-9ee3-4822-90e5-138c3a1816d6",
+			"rawModeData": "{\n    \"nome\":\"Teste 2\",\n    \"cpf\":\"84108080050\"\n}",
+			"pathVariables": {}
+		}
+	]
+}

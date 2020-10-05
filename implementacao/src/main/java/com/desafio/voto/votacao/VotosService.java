@@ -32,7 +32,7 @@ public class VotosService {
 
     public VotosModelImplementacao votar(VotosModelImplementacao model) {
 
-        if (!verificaVotoAssociado(model.getCpfAssociado(), model.getIdVotacao())) {
+        if (verificaVotoAssociado(model.getCpfAssociado(), model.getIdVotacao())) {
             throw new NotFound("Associado já votou");
         } else if (!verificaVotacao(model.getIdVotacao())) {
             throw new NotFound("Votação encerrada");
@@ -46,11 +46,19 @@ public class VotosService {
     }
 
     private boolean verificaVotoAssociado(String cpfAssociado, String idVotacao) {
-        final Query query = new Query();
-        query.addCriteria(Criteria.where("cpfAssociado").is(cpfAssociado));
-        query.addCriteria(Criteria.where("idVotacao").is(idVotacao));
-        VotosModelImplementacao modelImpl = mongoTemplate.findOne(query, VotosModelImplementacao.class);
-        return modelImpl != null;
+        List<VotosModelImplementacao> listaModelImpl = repository.findAll();
+        List<VotosModelImplementacao> listaIdVotacao = listaModelImpl.stream()
+                .filter(lisIdVotacao -> lisIdVotacao.getIdVotacao().equals(idVotacao))
+                .collect(Collectors.toList());
+        List<VotosModelImplementacao> listaCpfAssociado = listaIdVotacao.stream()
+                .filter(listaCpf -> listaCpf.getCpfAssociado().equals(cpfAssociado))
+                .collect(Collectors.toList());
+        System.out.println(listaCpfAssociado.size());
+        if (listaCpfAssociado.size() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean verificaVotacao(String id) {
@@ -69,9 +77,9 @@ public class VotosService {
         int sim = votosId.stream()
                 .filter(voto -> voto.getVoto() == VotoEnum.SIM).collect(Collectors.toList()).size();
         if (nao > sim) {
-            return "VOTOS NÃO VENCEU";
+            return "VENCEDOR = NAO";
         } else if (nao < sim) {
-            return "VOTOS SIM VENCEU";
+            return "VENCEDOR = SIM";
         } else {
             return "EMPATE";
         }

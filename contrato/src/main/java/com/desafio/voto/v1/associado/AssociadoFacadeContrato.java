@@ -32,9 +32,9 @@ public class AssociadoFacadeContrato {
                         .mapperAssociadoContratoParaImplementacao(model)));
     }
 
-    public AssociadoModelContrato editarPorCPF(String cpf, AssociadoModelContrato model) {
+    public AssociadoModelContrato editarPorCPF(AssociadoModelContrato model) {
         return MapperAssociadoContrato
-                .mapperAssociadoImplementacaoParaContrato(facade.editarPorCPF(cpf, MapperAssociadoContrato
+                .mapperAssociadoImplementacaoParaContrato(facade.editarPorCPF(MapperAssociadoContrato
                         .mapperAssociadoContratoParaImplementacao(model)));
     }
 
